@@ -48,6 +48,7 @@ def get_past_week():
         print(f"Error during initial reques: {e}")
 
 
+
 def first_row_header(df): 
     """Turn first row of dataset into column names"""
     try:
@@ -88,6 +89,22 @@ def next_task_set():
 
     return new_tasks
 
+def post_this_week(spreadsheet_id, spreadsheet_range, value_input_option, new_tasks):
+    """This function is used to place the next week's order into the dataset, so it can serve as the baseline for the next week's assignment. The function excludes the most recent task order from the possible assignments for the next week."""
+    creds, - = google.auth.default()
+    try: 
+        service = build("sheets", "v4", credentials=creds)
+        new_tasks = new_tasks.tolist()
+        body = {"values":new_tasks} 
+        result = (service.spreadsheets().values().update(spreadsheetID=spreadsheet_id, 
+                                                        range=spreadsheet_range, 
+                                                        valueInputOption=value_input_option, 
+                                                        body=body).execute()
+                 )
+        return result 
+    except HttpError as error: 
+        return error
+        
 
 
 # setting up the messages to be sent to the relevant people
@@ -119,9 +136,12 @@ def email_tasks(contact_info, sender, roomies):
 
 
     try: 
-        s = smtplib.SMTP("smtp-mail.outlook.com", port=587)
+        post_this_week(new_row) # upload to Google sheets for future reference 
+        
+        s = smtplib.SMTP("smtp-mail.outlook.com", port=587) # i personally use hotmail, can be changed to something else. 
         s.starttls()
         s.login(sender, "password")
+        
         for person, email in zip(roomies, contact_info): 
         # find which task has been assigned + look up definition
             task = new_row[person][0] 
