@@ -170,7 +170,7 @@ def email_tasks(contact_info, sender, roomies):
     
     except (email.errors, Exception, smtplib.SMTPException, HttpError) as e:
         with open(f"{new_row['Date']} Fail.txt", 'w') as text_file: 
-            text_file.write("") # write failure file to working directory
+            text_file.write(f"Procedure failed as a result of the following issues: {e}") # write failure file to working directory
 
 
 def main(): 
