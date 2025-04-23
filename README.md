@@ -1,5 +1,5 @@
 # Chores
-I currently live in a house with two other people. Between our schedules and general forgetfulness, it gets hard to coordinate who has cleaned what, or when it was cleaned. Our solution to this was a "chore chart", which is -- you guessed it -- a chart on the wall listing our chores, names, and dates. 
+I currently live in a house with two other people. Between our schedules and general forgetfulness, it gets hard to coordinate who has cleaned what, or when it was cleaned. Our solution to this was a "chore chart", which is - you guessed it - a chart on the wall listing our chores, names, and dates. 
 
 It works fine, but presents a fun use case for specific libraries in python, so I thought I'd try to automate/simplify the process. 
 
