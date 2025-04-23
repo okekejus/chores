@@ -8,7 +8,7 @@ First I created a Google Sheet, and manually entered the tasks assigned to each 
 
 | Date          | PERSON 1      | PERSON 2      | PERSON 3      |
 | ------------- | ------------- |------------- |------------- |
-| April 20 2025  | Task         |Task         |Task         |
+| Week Start Date | Task         |Task         |Task         |
 
 
 I imported the necessary modules using the following block of code: 
@@ -33,6 +33,8 @@ The Google Sheets API documentation included instructions on fetching sheets usi
 
 ## Determining Task Order
 Next, using the `next_task_set()` function, I create a permutation based on the three available "Tasks" which refer to the grouping of areas in the house that need cleaning: Kitchen, Landing, Dining. The permutation from the most recent entry is then excluded from the possible options. A random integer between 0 - `len(list_of_permutations)` is generated using `randrange`. This integer is used to determine which of the permutations will be used in the next week. 
+
+The new task order, along with the start date and respective asignees will be added to the google sheet, and used as the baseline for the next week's order (i.e, exclude that order from consideration before assigning new tasks).
 
 ## Notifications 
 Each roommate's name + email is stored in a list. This list is used within the function `email_tasks(contact_info, sender, roomies)`, which does as its name suggests: emails each roommate with their respective task for the week. This function includes some error handling in the form of local text files. When the script is run, a text file is created with a "Success" or "Failure" title. I recieve notifications when the folder has been updated, and will be able to determine its status by looking at the file name. 
