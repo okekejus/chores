@@ -15,7 +15,7 @@ from email import errors
 # google API requirements, best stored as .env variables. 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SPREADSHEET_ID = "insert-id-here"
-SAMPLE_RANGE_NAME = "Tasks!A:D"
+SAMPLE_RANGE_NAME = "insert-range-here"
 
 # Setting up email information for later use
 contact_info  = ['email@domain.com', 'email2@domain.com', 'email3@domain.com']
