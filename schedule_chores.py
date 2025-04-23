@@ -12,10 +12,15 @@ import smtplib
 from email.message import EmailMessage
 from email import errors
 
-
+# google API requirements, best stored as .env variables. 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SPREADSHEET_ID = "insert-id-here"
 SAMPLE_RANGE_NAME = "Tasks!A:D"
+
+# Setting up email information for later use
+contact_info  = ['email@domain.com', 'email2@domain.com', 'email3@domain.com']
+sender = "email@domain.com"
+roomies = ["Person 1", "Person 2", "Person 3"]
 
 
 
@@ -107,10 +112,7 @@ def post_this_week(spreadsheet_id, spreadsheet_range, value_input_option, new_ta
         
 
 
-# setting up the messages to be sent to the relevant people
-contact_info  = ['email@domain.com', 'email2@domain.com', 'email3@domain.com']
-sender = "email@domain.com"
-roomies = ["Person 1", "Person 2", "Person 3"]
+
 
 def email_tasks(contact_info, sender, roomies):
     """ Setting up the tasks, their definitions, and the emails for the people they are assigned to. This function will also send out the emails per recipient"""
