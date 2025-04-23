@@ -29,4 +29,5 @@ from email.message import EmailMessage # emails
 
 The Google Sheets API documentation included instructions on fetching sheets using the sheet ID. I made slight modifications to the code + placed it in a function `get_past_week()` which grabs the data from its source. The function returns each row as a list, then places those lists within a list. As a result, creating a dataframe makes the header columns into the first row of the dataset. My remedy to this issue was the `first_row_header()` function, which takes the contents of the first row + makes them into the column names for the dataframe. 
 
-Next, using `itertools`, I create a permutation based on th e
+Next, using `itertools`, I create a permutation based on the three available "Tasks" which refer to the grouping of areas in the house that need cleaning: Kitchen, Landing, Dining. The permutation from the most recent entry is then excluded from the possible options. A random integer between 0 - `len(list_of_permutations)` is generated using `randrange`. This integer is used to determine which of the permutations will be used in the next week. 
+
