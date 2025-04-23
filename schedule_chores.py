@@ -163,12 +163,14 @@ def email_tasks(contact_info, sender, roomies):
             
             s.send_message(msg)
         s.quit()
+
+        
         with open(f"{new_row['Date']} Success.txt", 'w') as text_file: 
-            text_file.write("")
+            text_file.write("") # write success file to working directory, will likely update with logger shortly. 
     
     except (email.errors, Exception, smtplib.SMTPException) as e:
         with open(f"{new_row['Date']} Fail.txt", 'w') as text_file: 
-            text_file.write("")
+            text_file.write("") # write failure file to working directory
 
 
 def main(): 
