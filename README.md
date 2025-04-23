@@ -35,7 +35,9 @@ The Google Sheets API documentation included instructions on fetching sheets usi
 Next, using the `next_task_set()` function, I create a permutation based on the three available "Tasks" which refer to the grouping of areas in the house that need cleaning: Kitchen, Landing, Dining. The permutation from the most recent entry is then excluded from the possible options. A random integer between 0 - `len(list_of_permutations)` is generated using `randrange`. This integer is used to determine which of the permutations will be used in the next week. 
 
 ## Notifications 
-Each roommate's name + email is stored in a list. This list is used within the function `email_tasks(contact_info, sender, roomies)`, which does as its name suggests: emails each roommate with their respective task for the week. 
+Each roommate's name + email is stored in a list. This list is used within the function `email_tasks(contact_info, sender, roomies)`, which does as its name suggests: emails each roommate with their respective task for the week. This function includes some error handling in the form of local text files. When the script is run, a text file is created with a "Success" or "Failure" title. I recieve notifications when the folder has been updated, and will be able to determine its status by looking at the file name. 
 
 # Maintenance + Next Steps 
 I have set the script up to run locally using cron jobs on my personal desktop. 
+
+Over time I will be adding more tasks (odd jobs around the house that only need to be done periodically), as well as the option to respond to the email notification when the task has been completed. 
