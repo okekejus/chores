@@ -40,6 +40,5 @@ The new task order, along with the start date and respective asignees will be ad
 Each roommate's name + email is stored in a list. This list is used within the function `email_tasks(contact_info, sender, roomies)`, which does as its name suggests: emails each roommate with their respective task for the week. This function includes some error handling in the form of local text files. When the script is run, a text file is created with a "Success" or "Failure" title. I recieve notifications when the folder has been updated, and will be able to determine its status by looking at the file name. 
 
 # Maintenance + Next Steps 
-I have set the script up to run locally using cron jobs on my personal desktop. 
-
-Over time I will be adding more tasks (odd jobs around the house that only need to be done periodically), as well as the option to respond to the email notification when the task has been completed. 
+- Currently working on a limitation brought up by Outlook, switching emails to gmail, keeping gmail api use consistent 
+- Organizing code further using classes
