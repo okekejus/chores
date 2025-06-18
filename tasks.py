@@ -10,6 +10,9 @@ class Chore:
 
     def add_freq(self, freq): 
         self.freq = freq
+
+
+
 # Kitchen 
 k = Chore("Kitchen, Laundry Room, Entrance")
 k.add_tasks(["Sweep + mop floors", "Wipe down appliances (Fridge, Microwave)", "Wipe counters and other surfaces", "Wash dish drying cushion", "Throw out moldy/expired food", "Empty bins + replace bags"])
