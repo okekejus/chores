@@ -122,7 +122,7 @@ def update_spreadsheets(spreadsheet_id, range_name, value_input_option, _values)
 
     try:
         service = build("sheets", "v4", credentials=creds)
-        values = [starter]
+        values = [_values]
         body = {"values": values}
         result = (service.spreadsheets().values().update(spreadsheetId=spreadsheet_id,
                                                         range=range_name, 
