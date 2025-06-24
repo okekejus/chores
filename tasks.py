@@ -12,18 +12,17 @@ class Chore:
         self.freq = freq
 
 
-
 # Kitchen 
-k = Chore("Kitchen, Laundry Room, Entrance")
-k.add_tasks(["Sweep + mop floors", "Wipe down appliances (Fridge, Microwave)", "Wipe counters and other surfaces", "Wash dish drying cushion", "Throw out moldy/expired food", "Empty bins + replace bags"])
-k.add_freq("Weekly")
+kitchen = Chore("Kitchen")
+kitchen.add_tasks(["Sweep + mop floors", "Wipe down appliances (Fridge, Microwave)", "Wipe counters and other surfaces", "Wash dish drying cushion", "Throw out moldy/expired food", "Empty bins + replace bags"])
+kitchen.add_freq("Weekly")
 
 # Dining 
-d = Chore("Dining + Living Rooms")
-d.add_freq("Weekly")
-d.add_tasks(["Sweep + Mop + Vacuum rugs", "Wipe tables + surfaces", "Empty bins", "Fold blankets", "Re-house random items"])
+dining = Chore("Dining")
+dining.add_freq("Weekly")
+dining.add_tasks(["Sweep + Mop + Vacuum rugs", "Wipe tables + surfaces", "Empty bins", "Fold blankets", "Re-house random items"])
 
 # Landing 
-l = Chore("Landing + Bathroom + Stairs")
-l.add_freq("Weekly")
-l.add_tasks(["Sweep + Mop + Vacuum Floors", "Scrub toilet bowl/areas", "Empty trash", "Scrub tub", "Wash Shower mat"])
+landing = Chore("Landing")
+landing.add_freq("Weekly")
+landing.add_tasks(["Sweep + Mop + Vacuum Floors", "Scrub toilet bowl/areas", "Empty trash", "Scrub tub", "Wash Shower mat"])
