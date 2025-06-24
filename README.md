@@ -51,5 +51,4 @@ The new task order, along with the start date and respective asignees are added 
 Using the new task order, classes, and a dict containing each house mate's name & email, I run the `send_mail(sender, recipient_name, recipient_email, chore)` function, which tells everyone what they should be doing. This is set to run once a week on my personal desktop. 
 
 # Maintenance + Next Steps 
-- Need to update google sheet with determined task order
 - set up response system + logging when a task has been completed
