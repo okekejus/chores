@@ -190,6 +190,7 @@ def main():
             
     for_entry = format_values(dt.date.today(), tba) # runs once a week on Sunday
     range_row = rownum()
+    update_spreadsheets(spreadsheet_id=SPREADSHEET_ID, range_name=f"Tasks!A{range_row}:D{range_row}", value_input_option="USER_ENTERED", _values=for_entry)
         
 if __name__== "__main__": 
     load_dotenv()
