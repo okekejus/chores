@@ -85,14 +85,18 @@ def send_mail(sender, recipient_name, recipient_email, chore, creds):
     """ Sends emails to housemates, including the details for each chore (housed within Chore class)"""
     try: 
         service = build("gmail", "v1", credentials=creds)
+        wkstrt = dt.date.today()
 
         message = EmailMessage()
+        task_list = "\n".join(chore.tasks)
+        combined = f"Hey {recipient_name}, your tasks for the week of {wkstrt} are below: \n" + task_list + "\nWhen completed, please respond with 'Done'"
 
-        message.set_content("\n".join(chore.tasks))
+
+        message.set_content(combined)
 
         message["To"] = recipient_email
         message["From"] = sender
-        message["Subject"] = f"{recipient_name}'s Task for week of {dt.date.today()}: {chore.section}"
+        message["Subject"] = f"{recipient_name}'s Task for week of {wkstrt}: {chore.section}"
 
         encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
 
@@ -184,7 +188,7 @@ def main():
         else: 
             print("No tasks detected")
             
-    for_entry = format_values(dt.datetime.today(), tba) # runs once a week on Sunday
+    for_entry = format_values(dt.date.today(), tba) # runs once a week on Sunday
     range_row = rownum()
         
 if __name__== "__main__": 
