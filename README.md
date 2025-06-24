@@ -44,7 +44,8 @@ I created a class called `Chore` with attributes such as `section` and `task` wh
 ## Determining Task Order
 Next, using the `next_task_set()` function, I create a permutation based on the area names (Chore.section). The most recent assignment is excluded from the list of permutations. A random integer between 0 - `len(list_of_permutations)` is generated using `randrange`. This integer is used to determine which of the permutations will be used in the next week. 
 
-The new task order, along with the start date and respective asignees will be added to the google sheet, and used as the baseline for the next week's order (i.e, exclude that order from consideration before assigning new tasks).
+The new task order, along with the start date and respective asignees are added to the sheet using the `update_spreadsheets()` function, which uses the `format_values()` and `rownum()` functions to insert the values into their rightful positions. This will allow them to be used as the baseline for the next week's order (i.e, exclude that order from consideration before assigning new tasks).
+
 
 ## Notifications 
 Using the new task order, classes, and a dict containing each house mate's name & email, I run the `send_mail(sender, recipient_name, recipient_email, chore)` function, which tells everyone what they should be doing. This is set to run once a week on my personal desktop. 
