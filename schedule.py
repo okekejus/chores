@@ -47,6 +47,23 @@ def fetch_past_week(SPREADSHEET_ID, SAMPLE_RANGE_NAME, creds):
         print(f"Error during initial request: {e}")
 
 
+def rownum(): 
+    """ Used to set up the rows for the next entry"""
+    try: 
+        service = build("sheets", "v4", credentials=creds) # Calling Sheets API 
+        sheet = service.spreadsheets()
+        result = (sheet.values().get(spreadsheetId=SPREADSHEET_ID, range=SAMPLE_RANGE_NAME).execute())
+        values = result.get("values", [])
+        if not values: 
+            return "No data found." 
+        else: 
+            values = first_row_header(pd.DataFrame(values))
+            values = values.shape[0] + 2
+            return values
+    except Exception as e: 
+            return f"Error during initial request: {e}"
+
+
 
 def next_task_set(most_recent, task_list = ["Kitchen", "Dining", "Landing"]): 
     """ Determines the order of tasks to be completed in the next week, using the past week's task as a reference. """    
@@ -88,6 +105,31 @@ def send_mail(sender, recipient_name, recipient_email, chore, creds):
         print(f"An error occurred: {error}")
         send_message = None
     return send_message
+
+def format_values(week, tba):
+        starter = [week]
+        for task in tba.values(): 
+            starter.append(task)
+        values = [starter]
+        return values
+    
+def update_spreadsheets(spreadsheet_id, range_name, value_input_option, _values):
+    """ Used to update the file with the determined order of tasks for the week."""
+
+    try:
+        service = build("sheets", "v4", credentials=creds)
+        values = [starter]
+        body = {"values": values}
+        result = (service.spreadsheets().values().update(spreadsheetId=spreadsheet_id,
+                                                        range=range_name, 
+                                                        valueInputOption=value_input_option, 
+                                                        body=body,).execute())
+        print(f"{result.get('updatedCells')} cells updated.")
+        return result
+    except Exception as e: 
+        print(f"An error occured: {e}")
+        return e
+
 
 def main():
     SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
@@ -141,7 +183,9 @@ def main():
                 print(f"An error occurred during sending {e}")
         else: 
             print("No tasks detected")
-            return None
+            
+    for_entry = format_values(dt.datetime.today(), tba) # runs once a week on Sunday
+    range_row = rownum()
         
 if __name__== "__main__": 
     load_dotenv()
